@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_progress_button/progress_button.dart';
+import 'package:flutter_progress_button/flutter_progress_button.dart';
 
 void main() => runApp(MyApp());
 

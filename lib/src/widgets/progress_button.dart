@@ -1,4 +1,4 @@
-part of progress_button;
+part of flutter_progress_button;
 
 enum ProgressButtonState { Default, Progress }
 

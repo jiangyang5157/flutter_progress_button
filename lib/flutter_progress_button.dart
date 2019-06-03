@@ -1,4 +1,4 @@
-library progress_button;
+library flutter_progress_button;
 
 import 'dart:async';
 

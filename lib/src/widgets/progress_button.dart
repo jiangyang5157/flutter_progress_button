@@ -1,6 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
+part of progress_button;
 
 enum ProgressButtonState { Default, Progress }
 
@@ -13,8 +11,7 @@ class ProgressButton extends StatefulWidget {
   final double height;
   final double borderRadius;
 
-  ProgressButton(
-    this.text, {
+  ProgressButton(this.text, {
     Key key,
     this.onProgress,
     this.color,
@@ -68,11 +65,20 @@ class _ProgressButtonState extends State<ProgressButton>
 
   @override
   Widget build(BuildContext context) {
-    _color = _color ?? Theme.of(context).buttonColor;
-    _textColor = _textColor ?? Theme.of(context).textTheme.body1.color;
+    _color = _color ?? Theme
+        .of(context)
+        .buttonColor;
+    _textColor = _textColor ?? Theme
+        .of(context)
+        .textTheme
+        .body1
+        .color;
 
     return PhysicalModel(
-      color: Theme.of(context).colorScheme.primary,
+      color: Theme
+          .of(context)
+          .colorScheme
+          .primary,
       borderRadius: BorderRadius.circular(widget.borderRadius),
       child: Container(
         key: _globalKey,

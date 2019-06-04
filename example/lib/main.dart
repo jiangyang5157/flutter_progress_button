@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                 height: 40,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 2000), () => 42);
+                      const Duration(milliseconds: 3000), () => 42);
                   // after returns, it will trigger animation running backwards, from end to beginning
                   return () {
                     // return is a function that will be called after animation is stopped at the beginning
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 height: 48,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 2000), () => 42);
+                      const Duration(milliseconds: 3000), () => 42);
                 },
               ),
             ),
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                 animate: false,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 2000), () => 42);
+                      const Duration(milliseconds: 3000), () => 42);
                 },
               ),
             ),
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: 24,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 2000), () => 42);
+                      const Duration(milliseconds: 3000), () => 42);
                 },
               ),
             ),
@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                 animate: false,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 2000), () => 42);
+                      const Duration(milliseconds: 3000), () => 42);
                 },
               ),
             ),
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: 24,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 2000), () => 42);
+                      const Duration(milliseconds: 3000), () => 42);
                 },
               ),
             ),

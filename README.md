@@ -39,7 +39,7 @@ Add `ProgressButton` to your widget tree:
 
 ```dart
 ProgressButton(
-    normalWidget: const Text('height=40'),
+    normalWidget: const Text('I am a button'),
     progressWidget: const CircularProgressIndicator(),
     width: 196,
     height: 40,

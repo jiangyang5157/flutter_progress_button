@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_button/flutter_progress_button.dart';
+import 'package:flutter_progress_button_example/three_bounce_dot.dart';
+import 'package:flutter_progress_button_example/three_size_dot.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,78 +33,105 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-//            Padding(
-//              padding: EdgeInsets.all(4.0),
-//              child: ProgressButton(
-//                '2 seconds delayed task',
-//                width: 196,
-//                onProgress: () async {
-//                  await Future.delayed(const Duration(milliseconds: 2000));
-//                  return () {
-//                    print('Take action when animation completed');
-//                  };
-//                },
-//              ),
-//            ),
-//            Padding(
-//              padding: EdgeInsets.all(4.0),
-//              child: ProgressButton(
-//                'No delay task',
-//                width: 196,
-//                onProgress: () {
-//                  print('Take action here or returns a handler Function');
-//                },
-//              ),
-//            ),
-//            Padding(
-//              padding: EdgeInsets.all(4.0),
-//              child: ProgressButton(
-//                'Board radius adapt',
-//                width: 196,
-//                borderRadius: 2,
-//                onProgress: () async {
-//                  await Future.delayed(const Duration(milliseconds: 2000));
-//                },
-//              ),
-//            ),
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('my text'),
-                progressWidget: const CircularProgressIndicator(),
+                normalWidget: const Text('Normal button'),
                 width: 196,
-                onProgress: () async {
-                  await Future.delayed(const Duration(milliseconds: 2000));
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                normalWidget: const Text('no anim'),
-                progressWidget: const CircularProgressIndicator(),
-                width: 196,
-                onProgress: () async {
-                  await Future.delayed(const Duration(milliseconds: 2000));
-                },
-                animate: false,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                normalWidget: const Text('no await'),
-                progressWidget: const CircularProgressIndicator(),
-                width: 196,
-                onProgress: () {},
-              ),
-            ),
-            Container(
-              width: 196,
-              height: 48,
-              child: RaisedButton(
-                child: Text('asd'),
                 onPressed: () {},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('Animate button'),
+                progressWidget: const CircularProgressIndicator(),
+                width: 196,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 2000), () => 42);
+                  // after returns, it will trigger animation running backwards, from end to beginning
+                  return () {
+                    // return is a function that will be called after animation is stopped at the beginning
+                    // For example do page navigation in here: showScorePage(argument: score);
+                  };
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('No animation button'),
+                progressWidget: const CircularProgressIndicator(),
+                width: 196,
+                animate: false,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 2000), () => 42);
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('Customized demo',
+                    style: TextStyle(color: Colors.white)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+                color: Colors.blueAccent,
+                width: 196,
+                height: 48,
+                borderRadius: 24,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 2000), () => 42);
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Icon(Icons.clear, color: Colors.green),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green)),
+                color: Colors.black45,
+                width: 48,
+                height: 48,
+                borderRadius: 24,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 2000), () => 42);
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('Customized progress widget1'),
+                progressWidget: ThreeSizeDot(size: 8, padding: const EdgeInsets.all(2)),
+                width: 196,
+                height: 48,
+                borderRadius: 24,
+                animate: false,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 2000), () => 42);
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('Customized progress widget2'),
+                progressWidget: ThreeBounceDot(
+                    size: 8, bounce: -16, padding: const EdgeInsets.all(2)),
+                width: 196,
+                height: 48,
+                borderRadius: 24,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 2000), () => 42);
+                },
               ),
             ),
           ],

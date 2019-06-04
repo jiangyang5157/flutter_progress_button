@@ -2,7 +2,6 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/jiangyang5157/flutter_progress_button.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jiangyang5157/flutter_progress_button.svg)
-![GitHub language count](https://img.shields.io/github/languages/count/jiangyang5157/flutter_progress_button.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/jiangyang5157/flutter_progress_button.svg)
 [![GitHub issues](https://img.shields.io/github/issues/jiangyang5157/flutter_progress_button.svg)](https://github.com/jiangyang5157/flutter_progress_button/issues)
 [![GitHub license](https://img.shields.io/github/license/jiangyang5157/flutter_progress_button.svg)](https://github.com/jiangyang5157/flutter_progress_button/blob/master/LICENSE)

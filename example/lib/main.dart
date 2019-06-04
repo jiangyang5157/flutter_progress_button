@@ -76,6 +76,27 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('no anim'),
+                progressWidget: const CircularProgressIndicator(),
+                width: 196,
+                onProgress: () async {
+                  await Future.delayed(const Duration(milliseconds: 2000));
+                },
+                animate: false,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('no await'),
+                progressWidget: const CircularProgressIndicator(),
+                width: 196,
+                onProgress: () {},
+              ),
+            ),
             Container(
               width: 196,
               height: 48,

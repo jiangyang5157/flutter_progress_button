@@ -3,13 +3,14 @@ part of flutter_progress_button;
 enum ProgressButtonState { Default, Progress }
 
 class ProgressButton extends StatefulWidget {
+  final Widget normalWidget;
+  final Widget progressWidget;
   final Function onProgress;
   final Color color;
   final double width;
   final double height;
   final double borderRadius;
-  final Widget normalWidget;
-  final Widget progressWidget;
+  final bool animate;
 
   ProgressButton({
     Key key,
@@ -20,6 +21,7 @@ class ProgressButton extends StatefulWidget {
     this.width = double.infinity,
     this.height = 48.0,
     this.borderRadius = 2.0,
+    this.animate = true,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,6 @@ class _ProgressButtonState extends State<ProgressButton>
   AnimationController _animController;
   Duration _duration = const Duration(milliseconds: 250);
   ProgressButtonState _state;
-  Color _color;
   double _width;
   double _height;
   double _borderRadius;
@@ -58,7 +59,6 @@ class _ProgressButtonState extends State<ProgressButton>
 
   void _reset() {
     _state = ProgressButtonState.Default;
-    _color = widget.color;
     _width = widget.width;
     _height = widget.height;
     _borderRadius = widget.borderRadius;
@@ -66,8 +66,6 @@ class _ProgressButtonState extends State<ProgressButton>
 
   @override
   Widget build(BuildContext context) {
-    _color = _color ?? Theme.of(context).buttonColor;
-
     return PhysicalModel(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(_borderRadius),
@@ -77,50 +75,75 @@ class _ProgressButtonState extends State<ProgressButton>
         width: _width,
         child: RaisedButton(
           padding: EdgeInsets.all(0.0),
-          color: _color,
+          color: widget.color,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(_borderRadius)),
           child: _buildChildren(context),
-          onPressed: () async {
-            if (_state != ProgressButtonState.Default) {
-              return;
-            }
+          onPressed: widget.onProgress == null
+              ? null
+              : () async {
+                  if (_state != ProgressButtonState.Default) {
+                    return;
+                  }
 
-            _forward(() {
-              _state = ProgressButtonState.Progress;
-            });
+                  Function onNormal;
+                  if (widget.animate) {
+                    AnimationStatusListener statusListener = (status) {
+                      switch (status) {
+                        case AnimationStatus.forward:
+                        case AnimationStatus.completed:
+                        case AnimationStatus.reverse:
+                          setState(() {
+                            _state = ProgressButtonState.Progress;
+                          });
+                          break;
+                        case AnimationStatus.dismissed:
+                          if (onNormal != null && onNormal is Function) {
+                            onNormal();
+                          }
+                          setState(() {
+                            _state = ProgressButtonState.Default;
+                          });
+                          break;
+                      }
+                    };
 
-            var onProgressCompleted;
-            if (widget.onProgress != null) {
-              onProgressCompleted = await widget.onProgress();
-            }
-
-            _reverse(() {
-              _state = ProgressButtonState.Default;
-              if (onProgressCompleted != null &&
-                  onProgressCompleted is Function) {
-                onProgressCompleted();
-              }
-            });
-          },
+                    _forward(statusListener);
+                    onNormal = await widget.onProgress();
+                    _reverse();
+                  } else {
+                    setState(() {
+                      _state = ProgressButtonState.Progress;
+                    });
+                    onNormal = await widget.onProgress();
+                    if (onNormal != null && onNormal is Function) {
+                      onNormal();
+                    }
+                    setState(() {
+                      _state = ProgressButtonState.Default;
+                    });
+                  }
+                },
         ),
       ),
     );
   }
 
   Widget _buildChildren(BuildContext context) {
+    Widget ret;
     switch (_state) {
       case ProgressButtonState.Default:
-        return widget.normalWidget;
+        ret = widget.normalWidget;
         break;
       case ProgressButtonState.Progress:
       default:
-        return widget.progressWidget;
+        ret = widget.progressWidget;
         break;
     }
+    return ret;
   }
 
-  void _forward(Function onStart) {
+  void _forward(AnimationStatusListener stateListener) {
     double initialWidth = _globalKey.currentContext.size.width;
     double initialBorderRadius = widget.borderRadius;
     double targetWidth = _height;
@@ -134,16 +157,13 @@ class _ProgressButtonState extends State<ProgressButton>
           _borderRadius = initialBorderRadius -
               ((initialBorderRadius - targetBorderRadius) * _anim.value);
         });
-      });
-    _animController.forward();
+      })
+      ..addStatusListener(stateListener);
 
-    onStart();
+    _animController.forward();
   }
 
-  void _reverse(Function onFinish) {
+  void _reverse() {
     _animController.reverse();
-    Timer(_duration, () {
-      onFinish();
-    });
   }
 }

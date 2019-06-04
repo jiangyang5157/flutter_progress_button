@@ -33,7 +33,9 @@ import 'package:flutter_progress_button/flutter_progress_button.dart';
 
 ```
 
-## Add `ProgressButton` to your widget tree
+## How to use
+
+Add `ProgressButton` to your widget tree:
 
 ```dart
 ProgressButton(
@@ -49,7 +51,8 @@ ProgressButton(
         // Optional returns is returning a function that can be called 
         // after the animation is stopped at the beginning.
         // A best practice would be to do time-consuming task in [onPressed], 
-        // and do page navigation in the returned function. So that user won't missed out the reverse animation.
+        // and do page navigation in the returned function.
+        // So that user won't missed out the reverse animation.
         };
     },
 ),

@@ -11,7 +11,8 @@ class ProgressButton extends StatefulWidget {
   final double height;
   final double borderRadius;
 
-  ProgressButton(this.text, {
+  ProgressButton(
+    this.text, {
     Key key,
     this.onProgress,
     this.color,
@@ -36,6 +37,7 @@ class _ProgressButtonState extends State<ProgressButton>
   Color _textColor;
   double _width;
   double _height;
+  double _borderRadius;
 
   @override
   dispose() {
@@ -61,25 +63,17 @@ class _ProgressButtonState extends State<ProgressButton>
     _textColor = widget.textColor;
     _width = widget.width;
     _height = widget.height;
+    _borderRadius = widget.borderRadius;
   }
 
   @override
   Widget build(BuildContext context) {
-    _color = _color ?? Theme
-        .of(context)
-        .buttonColor;
-    _textColor = _textColor ?? Theme
-        .of(context)
-        .textTheme
-        .body1
-        .color;
+    _color = _color ?? Theme.of(context).buttonColor;
+    _textColor = _textColor ?? Theme.of(context).textTheme.body1.color;
 
     return PhysicalModel(
-      color: Theme
-          .of(context)
-          .colorScheme
-          .primary,
-      borderRadius: BorderRadius.circular(widget.borderRadius),
+      color: Theme.of(context).colorScheme.primary,
+      borderRadius: BorderRadius.circular(_borderRadius),
       child: Container(
         key: _globalKey,
         height: _height,
@@ -88,7 +82,7 @@ class _ProgressButtonState extends State<ProgressButton>
           padding: EdgeInsets.all(0.0),
           color: _color,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(widget.borderRadius)),
+              borderRadius: BorderRadius.circular(_borderRadius)),
           child: _buildChildren(context),
           onPressed: () async {
             if (_state != ProgressButtonState.Default) {
@@ -119,14 +113,21 @@ class _ProgressButtonState extends State<ProgressButton>
 
   void _forward(Function onStart) {
     double initialWidth = _globalKey.currentContext.size.width;
+    double initialBorderRadius = widget.borderRadius;
+    double targetWidth = _height;
+    double targetBorderRadius = _height / 2;
+
     _animController = AnimationController(duration: _duration, vsync: this);
     _anim = Tween(begin: 0.0, end: 1.0).animate(_animController)
       ..addListener(() {
         setState(() {
-          _width = initialWidth - ((initialWidth - _height) * _anim.value);
+          _width = initialWidth - ((initialWidth - targetWidth) * _anim.value);
+          _borderRadius = initialBorderRadius -
+              ((initialBorderRadius - targetBorderRadius) * _anim.value);
         });
       });
     _animController.forward();
+
     onStart();
   }
 

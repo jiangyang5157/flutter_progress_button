@@ -34,12 +34,12 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                'await 1 second',
+                '2 seconds delayed task',
                 width: 196,
                 onProgress: () async {
-                  await Future.delayed(const Duration(milliseconds: 1000));
+                  await Future.delayed(const Duration(milliseconds: 2000));
                   return () {
-                    print('await 1 second');
+                    print('Take action when animation completed');
                   };
                 },
               ),
@@ -47,10 +47,21 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                'no await',
+                'No delay task',
                 width: 196,
                 onProgress: () {
-                  print('no await');
+                  print('Take action here or returns a handler Function');
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                'Board radius adapt',
+                width: 196,
+                borderRadius: 2,
+                onProgress: () async {
+                  await Future.delayed(const Duration(milliseconds: 2000));
                 },
               ),
             ),

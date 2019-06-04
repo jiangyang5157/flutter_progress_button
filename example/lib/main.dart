@@ -33,19 +33,29 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                normalWidget: const Text('Normal button'),
-                width: 196,
-                onPressed: () {},
-              ),
+              padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
+              child: Text('Normal button:', style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('Animate button'),
+                normalWidget: const Text('Button_1'),
+                width: 196,
+                height: 40,
+                onPressed: () {},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
+              child: Text('Animate button with board adjustment:', style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('height=40'),
                 progressWidget: const CircularProgressIndicator(),
                 width: 196,
+                height: 40,
                 onPressed: () async {
                   int score = await Future.delayed(
                       const Duration(milliseconds: 2000), () => 42);
@@ -60,27 +70,13 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('No animation button'),
-                progressWidget: const CircularProgressIndicator(),
-                width: 196,
-                animate: false,
-                onPressed: () async {
-                  int score = await Future.delayed(
-                      const Duration(milliseconds: 2000), () => 42);
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                normalWidget: const Text('Customized demo',
+                normalWidget: const Text('height=48',
                     style: TextStyle(color: Colors.white)),
                 progressWidget: const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
                 color: Colors.blueAccent,
                 width: 196,
                 height: 48,
-                borderRadius: 24,
                 onPressed: () async {
                   int score = await Future.delayed(
                       const Duration(milliseconds: 2000), () => 42);
@@ -88,13 +84,39 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
+              padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
+              child: Text('No animation button:', style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Icon(Icons.clear, color: Colors.green),
+                normalWidget: const Text('Button_4',
+                    style: TextStyle(color: Colors.white)),
                 progressWidget: const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green)),
-                color: Colors.black45,
-                width: 48,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+                color: Colors.blueAccent,
+                width: 196,
+                height: 48,
+                animate: false,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 2000), () => 42);
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
+              child: Text('Customized:', style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Text('borderRadius=h/2',
+                    style: TextStyle(color: Colors.black)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black)),
+                color: Colors.lightGreen,
+                width: 196,
                 height: 48,
                 borderRadius: 24,
                 onPressed: () async {
@@ -106,12 +128,29 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('Customized progress widget1'),
+                normalWidget: const Text('Button_6', style: TextStyle(color: Colors.white)),
                 progressWidget: ThreeSizeDot(),
+                color: Colors.black54,
                 width: 196,
                 height: 48,
                 borderRadius: 24,
                 animate: false,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 2000), () => 42);
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: ProgressButton(
+                normalWidget: const Icon(Icons.clear, color: Colors.lightGreen),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.lightGreen)),
+                color: Colors.black54,
+                width: 48,
+                height: 48,
+                borderRadius: 24,
                 onPressed: () async {
                   int score = await Future.delayed(
                       const Duration(milliseconds: 2000), () => 42);

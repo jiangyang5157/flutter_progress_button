@@ -1,3 +1,9 @@
+## 0.6.0 - 20190604
+
+Support Customized content widgets.
+Support auto adjust board radius.
+Add examples.
+
 ## 0.5.0 - 20190604
 
 Implement basic progress button function and animation.

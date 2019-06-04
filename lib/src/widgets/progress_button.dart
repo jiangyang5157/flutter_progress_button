@@ -15,7 +15,7 @@ class ProgressButton extends StatefulWidget {
   ProgressButton({
     Key key,
     @required this.normalWidget,
-    @required this.progressWidget,
+    this.progressWidget,
     this.onPressed,
     this.color,
     this.width = double.infinity,
@@ -137,7 +137,7 @@ class _ProgressButtonState extends State<ProgressButton>
         break;
       case ProgressButtonState.Progress:
       default:
-        ret = widget.progressWidget;
+        ret = widget.progressWidget ?? widget.normalWidget;
         break;
     }
     return ret;

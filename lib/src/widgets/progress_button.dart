@@ -5,18 +5,18 @@ enum ProgressButtonState { Default, Progress }
 class ProgressButton extends StatefulWidget {
   final Function onProgress;
   final Color color;
-  final Color textColor;
-  final String text;
   final double width;
   final double height;
   final double borderRadius;
+  final Widget normalWidget;
+  final Widget progressWidget;
 
-  ProgressButton(
-    this.text, {
+  ProgressButton({
     Key key,
+    @required this.normalWidget,
+    @required this.progressWidget,
     this.onProgress,
     this.color,
-    this.textColor,
     this.width = double.infinity,
     this.height = 48,
     this.borderRadius = 24.0,
@@ -60,7 +60,6 @@ class _ProgressButtonState extends State<ProgressButton>
   void _reset() {
     _state = ProgressButtonState.Default;
     _color = widget.color;
-    _textColor = widget.textColor;
     _width = widget.width;
     _height = widget.height;
     _borderRadius = widget.borderRadius;
@@ -111,6 +110,18 @@ class _ProgressButtonState extends State<ProgressButton>
     );
   }
 
+  Widget _buildChildren(BuildContext context) {
+    switch (_state) {
+      case ProgressButtonState.Default:
+        return widget.normalWidget;
+        break;
+      case ProgressButtonState.Progress:
+      default:
+        return widget.progressWidget;
+        break;
+    }
+  }
+
   void _forward(Function onStart) {
     double initialWidth = _globalKey.currentContext.size.width;
     double initialBorderRadius = widget.borderRadius;
@@ -136,20 +147,5 @@ class _ProgressButtonState extends State<ProgressButton>
     Timer(_duration, () {
       onFinish();
     });
-  }
-
-  Widget _buildChildren(BuildContext context) {
-    switch (_state) {
-      case ProgressButtonState.Default:
-        return Text(widget.text, style: TextStyle(color: _textColor));
-        break;
-      case ProgressButtonState.Progress:
-      default:
-        return CircularProgressIndicator(
-          value: null,
-          valueColor: AlwaysStoppedAnimation<Color>(_textColor),
-        );
-        break;
-    }
   }
 }

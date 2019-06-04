@@ -31,33 +31,45 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+//            Padding(
+//              padding: EdgeInsets.all(4.0),
+//              child: ProgressButton(
+//                '2 seconds delayed task',
+//                width: 196,
+//                onProgress: () async {
+//                  await Future.delayed(const Duration(milliseconds: 2000));
+//                  return () {
+//                    print('Take action when animation completed');
+//                  };
+//                },
+//              ),
+//            ),
+//            Padding(
+//              padding: EdgeInsets.all(4.0),
+//              child: ProgressButton(
+//                'No delay task',
+//                width: 196,
+//                onProgress: () {
+//                  print('Take action here or returns a handler Function');
+//                },
+//              ),
+//            ),
+//            Padding(
+//              padding: EdgeInsets.all(4.0),
+//              child: ProgressButton(
+//                'Board radius adapt',
+//                width: 196,
+//                borderRadius: 2,
+//                onProgress: () async {
+//                  await Future.delayed(const Duration(milliseconds: 2000));
+//                },
+//              ),
+//            ),
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                '2 seconds delayed task',
-                width: 196,
-                onProgress: () async {
-                  await Future.delayed(const Duration(milliseconds: 2000));
-                  return () {
-                    print('Take action when animation completed');
-                  };
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                'No delay task',
-                width: 196,
-                onProgress: () {
-                  print('Take action here or returns a handler Function');
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                'Board radius adapt',
+                normalWidget: const Text('my text'),
+                progressWidget: const CircularProgressIndicator(),
                 width: 196,
                 borderRadius: 2,
                 onProgress: () async {

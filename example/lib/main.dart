@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_button/flutter_progress_button.dart';
-import 'package:flutter_progress_button_example/three_bounce_dot.dart';
 import 'package:flutter_progress_button_example/three_size_dot.dart';
 
 void main() => runApp(MyApp());
@@ -108,26 +107,11 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
                 normalWidget: const Text('Customized progress widget1'),
-                progressWidget: ThreeSizeDot(size: 8, padding: const EdgeInsets.all(2)),
+                progressWidget: ThreeSizeDot(),
                 width: 196,
                 height: 48,
                 borderRadius: 24,
                 animate: false,
-                onPressed: () async {
-                  int score = await Future.delayed(
-                      const Duration(milliseconds: 2000), () => 42);
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                normalWidget: const Text('Customized progress widget2'),
-                progressWidget: ThreeBounceDot(
-                    size: 8, bounce: -16, padding: const EdgeInsets.all(2)),
-                width: 196,
-                height: 48,
-                borderRadius: 24,
                 onPressed: () async {
                   int score = await Future.delayed(
                       const Duration(milliseconds: 2000), () => 42);

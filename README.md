@@ -1,5 +1,10 @@
 # flutter_progress_button
 
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jiangyang5157/flutter_progress_button.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/jiangyang5157/flutter_progress_button.svg)
+[![GitHub issues](https://img.shields.io/github/issues/jiangyang5157/flutter_progress_button.svg)](https://github.com/jiangyang5157/flutter_progress_button/issues)
+[![GitHub license](https://img.shields.io/github/license/jiangyang5157/flutter_progress_button.svg)](https://github.com/jiangyang5157/flutter_progress_button/blob/master/LICENSE)
+
 **flutter_progress_button** is a free and open source (MIT license) Material Flutter Button that supports variety of buttons style demands. It is designed to be easy to use and customizable.
 
 <img src="https://github.com/jiangyang5157/flutter_progress_button/blob/master/example/assets/example.gif" width="600">

@@ -4,7 +4,7 @@
 
 ![](https://github.com/jiangyang5157/flutter_progress_button/blob/master/example/assets/example.gif)
 
-<img src="https://github.com/jiangyang5157/flutter_progress_button/blob/master/example/assets/example.gif" width="100">
+<img src="https://github.com/jiangyang5157/flutter_progress_button/blob/master/example/assets/example.gif" width="600">
 
 
 ## Get started

@@ -72,7 +72,7 @@ class _ProgressButtonState extends State<ProgressButton>
     _textColor = _textColor ?? Theme.of(context).textTheme.body1.color;
 
     return PhysicalModel(
-      color: Theme.of(context).colorScheme.primary,
+      color: Colors.transparent,
       borderRadius: BorderRadius.circular(_borderRadius),
       child: Container(
         key: _globalKey,
@@ -89,7 +89,7 @@ class _ProgressButtonState extends State<ProgressButton>
               return;
             }
 
-            _forward(() async {
+            _forward(() {
               _state = ProgressButtonState.Progress;
             });
 

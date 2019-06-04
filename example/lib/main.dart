@@ -71,10 +71,17 @@ class _HomePageState extends State<HomePage> {
                 normalWidget: const Text('my text'),
                 progressWidget: const CircularProgressIndicator(),
                 width: 196,
-                borderRadius: 2,
                 onProgress: () async {
                   await Future.delayed(const Duration(milliseconds: 2000));
                 },
+              ),
+            ),
+            Container(
+              width: 196,
+              height: 48,
+              child: RaisedButton(
+                child: Text('asd'),
+                onPressed: () {},
               ),
             ),
           ],

@@ -18,8 +18,8 @@ class ProgressButton extends StatefulWidget {
     this.onProgress,
     this.color,
     this.width = double.infinity,
-    this.height = 48,
-    this.borderRadius = 24.0,
+    this.height = 48.0,
+    this.borderRadius = 2.0,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,6 @@ class _ProgressButtonState extends State<ProgressButton>
   Duration _duration = const Duration(milliseconds: 250);
   ProgressButtonState _state;
   Color _color;
-  Color _textColor;
   double _width;
   double _height;
   double _borderRadius;
@@ -68,7 +67,6 @@ class _ProgressButtonState extends State<ProgressButton>
   @override
   Widget build(BuildContext context) {
     _color = _color ?? Theme.of(context).buttonColor;
-    _textColor = _textColor ?? Theme.of(context).textTheme.body1.color;
 
     return PhysicalModel(
       color: Colors.transparent,

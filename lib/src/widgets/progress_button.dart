@@ -5,7 +5,7 @@ enum ProgressButtonState { Default, Progress }
 class ProgressButton extends StatefulWidget {
   final Widget normalWidget;
   final Widget progressWidget;
-  final Function onProgress;
+  final Function onPressed;
   final Color color;
   final double width;
   final double height;
@@ -16,10 +16,10 @@ class ProgressButton extends StatefulWidget {
     Key key,
     @required this.normalWidget,
     @required this.progressWidget,
-    this.onProgress,
+    this.onPressed,
     this.color,
     this.width = double.infinity,
-    this.height = 48.0,
+    this.height = 40.0,
     this.borderRadius = 2.0,
     this.animate = true,
   }) : super(key: key);
@@ -79,7 +79,7 @@ class _ProgressButtonState extends State<ProgressButton>
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(_borderRadius)),
           child: _buildChildren(context),
-          onPressed: widget.onProgress == null
+          onPressed: widget.onPressed == null
               ? null
               : () async {
                   if (_state != ProgressButtonState.Default) {
@@ -109,13 +109,13 @@ class _ProgressButtonState extends State<ProgressButton>
                     };
 
                     _forward(statusListener);
-                    onNormal = await widget.onProgress();
+                    onNormal = await widget.onPressed();
                     _reverse();
                   } else {
                     setState(() {
                       _state = ProgressButtonState.Progress;
                     });
-                    onNormal = await widget.onProgress();
+                    onNormal = await widget.onPressed();
                     if (onNormal != null && onNormal is Function) {
                       onNormal();
                     }

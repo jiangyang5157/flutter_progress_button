@@ -2,7 +2,7 @@
 
 **flutter_progress_button** is a free and open source (MIT license) Material Flutter Button that supports variety of buttons style demands. It is designed to be easy to use and customizable.
 
-![Examples](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![](https://github.com/jiangyang5157/flutter_progress_button/blob/master/example/assets/example.gif)
 
 ## Get started
 
@@ -46,8 +46,10 @@ ProgressButton(
             const Duration(milliseconds: 3000), () => 42);
         // After [onPressed], it will trigger animation running backwards, from end to beginning
         return () {
-        // Optional returns is returning a function that can be called after animation is stopped at the beginning.
-        // A best practice would be to do time-consuming task in [onPressed], and do page navigation in the returned function. So that user won't missed out the reverse animation.
+        // Optional returns is returning a function that can be called 
+        // after the animation is stopped at the beginning.
+        // A best practice would be to do time-consuming task in [onPressed], 
+        // and do page navigation in the returned function. So that user won't missed out the reverse animation.
         };
     },
 ),

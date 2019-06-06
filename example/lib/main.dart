@@ -35,12 +35,13 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('Normal button:', style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Text('Like normal button:',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('Button_1'),
+                defaultWidget: const Text('Button_1'),
                 width: 196,
                 height: 40,
                 onPressed: () {},
@@ -48,22 +49,26 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('Animate button with board adjustment:', style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Text('Animate button with board adjustment:',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('height=40'),
+                defaultWidget: const Text('height=40'),
                 progressWidget: const CircularProgressIndicator(),
                 width: 196,
                 height: 40,
                 onPressed: () async {
                   int score = await Future.delayed(
                       const Duration(milliseconds: 3000), () => 42);
-                  // after returns, it will trigger animation running backwards, from end to beginning
+                  // After [onPressed], it will trigger animation running backwards, from end to beginning
                   return () {
-                    // return is a function that will be called after animation is stopped at the beginning
-                    // For example do page navigation in here: showScorePage(argument: score);
+                    // Optional returns is returning a function that can be called
+                    // after the animation is stopped at the beginning.
+                    // A best practice would be to do time-consuming task in [onPressed],
+                    // and do page navigation in the returned function.
+                    // So that user won't missed out the reverse animation.
                   };
                 },
               ),
@@ -71,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('height=48',
+                defaultWidget: const Text('height=48',
                     style: TextStyle(color: Colors.white)),
                 progressWidget: const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
@@ -86,12 +91,13 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('No animation button:', style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Text('No animation button:',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('Button_4',
+                defaultWidget: const Text('Button_4',
                     style: TextStyle(color: Colors.white)),
                 progressWidget: const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
@@ -107,12 +113,13 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('Customized:', style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Text('Customized:',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('borderRadius=h/2',
+                defaultWidget: const Text('borderRadius=h/2',
                     style: TextStyle(color: Colors.black)),
                 progressWidget: const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.black)),
@@ -129,7 +136,8 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Text('Button_6', style: TextStyle(color: Colors.white)),
+                defaultWidget: const Text('Button_6',
+                    style: TextStyle(color: Colors.white)),
                 progressWidget: ThreeSizeDot(),
                 color: Colors.black54,
                 width: 196,
@@ -145,9 +153,11 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                normalWidget: const Icon(Icons.clear, color: Colors.lightGreen),
+                defaultWidget:
+                    const Icon(Icons.clear, color: Colors.lightGreen),
                 progressWidget: const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.lightGreen)),
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.lightGreen)),
                 color: Colors.black54,
                 width: 48,
                 height: 48,
@@ -171,13 +181,13 @@ class _HomePageState extends State<HomePage> {
 class ThreeSizeDot extends StatefulWidget {
   ThreeSizeDot(
       {Key key,
-        this.shape = BoxShape.circle,
-        this.duration = const Duration(milliseconds: 1000),
-        this.size = 8.0,
-        this.color_1 = Colors.red,
-        this.color_2 = Colors.green,
-        this.color_3 = Colors.blue,
-        this.padding = const EdgeInsets.all(2)})
+      this.shape = BoxShape.circle,
+      this.duration = const Duration(milliseconds: 1000),
+      this.size = 8.0,
+      this.color_1 = Colors.red,
+      this.color_2 = Colors.green,
+      this.color_3 = Colors.blue,
+      this.padding = const EdgeInsets.all(2)})
       : super(key: key);
 
   final BoxShape shape;

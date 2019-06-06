@@ -55,9 +55,9 @@ ProgressButton(
             const Duration(milliseconds: 3000), () => 42);
         // After [onPressed], it will trigger animation running backwards, from end to beginning
         return () {
-        // Optional returns is returning a function that can be called 
+        // Optional returns is returning a function that can be called
         // after the animation is stopped at the beginning.
-        // A best practice would be to do time-consuming task in [onPressed], 
+        // A best practice would be to do time-consuming task in [onPressed],
         // and do page navigation in the returned function.
         // So that user won't missed out the reverse animation.
         };

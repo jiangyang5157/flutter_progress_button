@@ -3,7 +3,7 @@ part of flutter_progress_button;
 enum ProgressButtonState { Default, Progress }
 
 class ProgressButton extends StatefulWidget {
-  final Widget normalWidget;
+  final Widget defaultWidget;
   final Widget progressWidget;
   final Function onPressed;
   final Color color;
@@ -14,7 +14,7 @@ class ProgressButton extends StatefulWidget {
 
   ProgressButton({
     Key key,
-    @required this.normalWidget,
+    @required this.defaultWidget,
     this.progressWidget,
     this.onPressed,
     this.color,
@@ -86,7 +86,7 @@ class _ProgressButtonState extends State<ProgressButton>
                     return;
                   }
 
-                  Function onNormal;
+                  Function onDefault;
                   if (widget.animate) {
                     AnimationStatusListener statusListener = (status) {
                       switch (status) {
@@ -98,8 +98,8 @@ class _ProgressButtonState extends State<ProgressButton>
                           });
                           break;
                         case AnimationStatus.dismissed:
-                          if (onNormal != null && onNormal is Function) {
-                            onNormal();
+                          if (onDefault != null && onDefault is Function) {
+                            onDefault();
                           }
                           setState(() {
                             _state = ProgressButtonState.Default;
@@ -109,15 +109,15 @@ class _ProgressButtonState extends State<ProgressButton>
                     };
 
                     _forward(statusListener);
-                    onNormal = await widget.onPressed();
+                    onDefault = await widget.onPressed();
                     _reverse();
                   } else {
                     setState(() {
                       _state = ProgressButtonState.Progress;
                     });
-                    onNormal = await widget.onPressed();
-                    if (onNormal != null && onNormal is Function) {
-                      onNormal();
+                    onDefault = await widget.onPressed();
+                    if (onDefault != null && onDefault is Function) {
+                      onDefault();
                     }
                     setState(() {
                       _state = ProgressButtonState.Default;
@@ -133,11 +133,11 @@ class _ProgressButtonState extends State<ProgressButton>
     Widget ret;
     switch (_state) {
       case ProgressButtonState.Default:
-        ret = widget.normalWidget;
+        ret = widget.defaultWidget;
         break;
       case ProgressButtonState.Progress:
       default:
-        ret = widget.progressWidget ?? widget.normalWidget;
+        ret = widget.progressWidget ?? widget.defaultWidget;
         break;
     }
     return ret;

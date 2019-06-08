@@ -1,3 +1,7 @@
+## 0.6.2 - 20190608
+Resolved Bug:
+Avoid a scenario that dispose called on a null animation controller.
+
 ## 0.6.1 - 20190604
 Improves package health.
 

@@ -1,6 +1,10 @@
+## 0.6.3 - 20190609
+Resolved Bug:
+Avoid a animate=false scenario that setState is called after dispose.
+
 ## 0.6.2 - 20190608
 Resolved Bug:
-Avoid a scenario that dispose called on a null animation controller.
+Avoid a scenario that dispose is called on a null AnimationController.
 
 ## 0.6.1 - 20190604
 Improves package health.

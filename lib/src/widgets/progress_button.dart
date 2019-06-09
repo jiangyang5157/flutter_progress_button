@@ -1,6 +1,6 @@
 part of flutter_progress_button;
 
-enum ProgressButtonState { Default, Progress }
+enum ProgressButtonState { Default, Processing }
 
 class ProgressButton extends StatefulWidget {
   final Widget defaultWidget;
@@ -86,42 +86,27 @@ class _ProgressButtonState extends State<ProgressButton>
                     return;
                   }
 
-                  Function onDefault;
+                  // The result of widget.onPressed() will be called as Function after button status is back to default.
+                  var onDefault;
                   if (widget.animate) {
-                    AnimationStatusListener statusListener = (status) {
-                      switch (status) {
-                        case AnimationStatus.forward:
-                        case AnimationStatus.completed:
-                        case AnimationStatus.reverse:
-                          setState(() {
-                            _state = ProgressButtonState.Progress;
-                          });
-                          break;
-                        case AnimationStatus.dismissed:
-                          if (onDefault != null && onDefault is Function) {
-                            onDefault();
-                          }
-                          setState(() {
-                            _state = ProgressButtonState.Default;
-                          });
-                          break;
+                    _toProcessing();
+                    _forward((status) {
+                      if (status == AnimationStatus.dismissed) {
+                        _toDefault();
+                        if (onDefault != null && onDefault is Function) {
+                          onDefault();
+                        }
                       }
-                    };
-
-                    _forward(statusListener);
+                    });
                     onDefault = await widget.onPressed();
                     _reverse();
                   } else {
-                    setState(() {
-                      _state = ProgressButtonState.Progress;
-                    });
+                    _toProcessing();
                     onDefault = await widget.onPressed();
+                    _toDefault();
                     if (onDefault != null && onDefault is Function) {
                       onDefault();
                     }
-                    setState(() {
-                      _state = ProgressButtonState.Default;
-                    });
                   }
                 },
         ),
@@ -135,12 +120,28 @@ class _ProgressButtonState extends State<ProgressButton>
       case ProgressButtonState.Default:
         ret = widget.defaultWidget;
         break;
-      case ProgressButtonState.Progress:
+      case ProgressButtonState.Processing:
       default:
         ret = widget.progressWidget ?? widget.defaultWidget;
         break;
     }
     return ret;
+  }
+
+  void _toProcessing() {
+    setState(() {
+      _state = ProgressButtonState.Processing;
+    });
+  }
+
+  void _toDefault() {
+    if (mounted) {
+      setState(() {
+        _state = ProgressButtonState.Default;
+      });
+    } else {
+      _state = ProgressButtonState.Default;
+    }
   }
 
   void _forward(AnimationStatusListener stateListener) {

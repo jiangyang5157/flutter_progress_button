@@ -86,14 +86,14 @@ class _ProgressButtonState extends State<ProgressButton>
                     return;
                   }
 
-                  // The result of widget.onPressed() will be called as Function after button status is back to default.
-                  var onDefault;
+                  // The result of widget.onPressed() will be called as VoidCallback after button status is back to default.
+                  VoidCallback onDefault;
                   if (widget.animate) {
                     _toProcessing();
                     _forward((status) {
                       if (status == AnimationStatus.dismissed) {
                         _toDefault();
-                        if (onDefault != null && onDefault is Function) {
+                        if (onDefault != null && onDefault is VoidCallback) {
                           onDefault();
                         }
                       }
@@ -104,7 +104,7 @@ class _ProgressButtonState extends State<ProgressButton>
                     _toProcessing();
                     onDefault = await widget.onPressed();
                     _toDefault();
-                    if (onDefault != null && onDefault is Function) {
+                    if (onDefault != null && onDefault is VoidCallback) {
                       onDefault();
                     }
                   }

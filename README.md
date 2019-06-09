@@ -18,7 +18,7 @@
 Add this to your package's pubspec.yaml file:
 
 ```yaml
-flutter_progress_button: '^0.6.2'
+flutter_progress_button: '^0.6.3'
 ```
 
 ### **Install it**

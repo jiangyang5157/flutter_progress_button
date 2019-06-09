@@ -1,3 +1,6 @@
+## 0.6.4 - 20190609
+README version update.
+
 ## 0.6.3 - 20190609
 Resolved Bug:
 Avoid a animate=false scenario that setState is called after dispose.

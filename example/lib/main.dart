@@ -184,9 +184,9 @@ class ThreeSizeDot extends StatefulWidget {
       this.shape = BoxShape.circle,
       this.duration = const Duration(milliseconds: 1000),
       this.size = 8.0,
-      this.color_1 = Colors.red,
-      this.color_2 = Colors.green,
-      this.color_3 = Colors.blue,
+      this.color_1,
+      this.color_2,
+      this.color_3,
       this.padding = const EdgeInsets.all(2)})
       : super(key: key);
 
@@ -242,7 +242,8 @@ class _ThreeSizeDotState extends State<ThreeSizeDot>
               child: Dot(
                 shape: widget.shape,
                 size: widget.size,
-                color: widget.color_1,
+                color:
+                    widget.color_1 ?? Theme.of(context).textTheme.body1.color,
               ),
             ),
           ),
@@ -253,7 +254,8 @@ class _ThreeSizeDotState extends State<ThreeSizeDot>
               child: Dot(
                 shape: widget.shape,
                 size: widget.size,
-                color: widget.color_2,
+                color:
+                    widget.color_2 ?? Theme.of(context).textTheme.body1.color,
               ),
             ),
           ),
@@ -264,7 +266,8 @@ class _ThreeSizeDotState extends State<ThreeSizeDot>
               child: Dot(
                 shape: widget.shape,
                 size: widget.size,
-                color: widget.color_3,
+                color:
+                    widget.color_3 ?? Theme.of(context).textTheme.body1.color,
               ),
             ),
           ),

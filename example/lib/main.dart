@@ -34,14 +34,9 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('Like normal button:',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-            ),
-            Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                defaultWidget: const Text('Button_1'),
+                defaultWidget: const Text('Like normal button'),
                 width: 196,
                 height: 40,
                 onPressed: () {},
@@ -49,7 +44,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('Animate button with board adjustment:',
+              child: Text('Animate button with border adjustment:',
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Padding(
@@ -91,7 +86,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('No animation button:',
+              child: Text('animate=false:',
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Padding(
@@ -136,7 +131,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(4.0),
               child: ProgressButton(
-                defaultWidget: const Text('Button_6',
+                defaultWidget: const Text('3 dots animation',
                     style: TextStyle(color: Colors.white)),
                 progressWidget: ThreeSizeDot(),
                 color: Colors.black54,
@@ -243,7 +238,7 @@ class _ThreeSizeDotState extends State<ThreeSizeDot>
                 shape: widget.shape,
                 size: widget.size,
                 color:
-                    widget.color_1 ?? Theme.of(context).textTheme.body1.color,
+                    widget.color_1 ?? Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),
@@ -255,7 +250,7 @@ class _ThreeSizeDotState extends State<ThreeSizeDot>
                 shape: widget.shape,
                 size: widget.size,
                 color:
-                    widget.color_2 ?? Theme.of(context).textTheme.body1.color,
+                    widget.color_2 ?? Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),
@@ -267,7 +262,7 @@ class _ThreeSizeDotState extends State<ThreeSizeDot>
                 shape: widget.shape,
                 size: widget.size,
                 color:
-                    widget.color_3 ?? Theme.of(context).textTheme.body1.color,
+                    widget.color_3 ?? Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),

@@ -1,11 +1,14 @@
 part of flutter_progress_button;
 
+enum ProgressButtonType { Raised, Flat, Outline }
+
 enum ProgressButtonState { Default, Processing }
 
 class ProgressButton extends StatefulWidget {
   final Widget defaultWidget;
   final Widget progressWidget;
   final Function onPressed;
+  final ProgressButtonType progressButtonType;
   final Color color;
   final double width;
   final double height;
@@ -14,9 +17,10 @@ class ProgressButton extends StatefulWidget {
 
   ProgressButton({
     Key key,
-    @required this.defaultWidget,
+    this.defaultWidget,
     this.progressWidget,
     this.onPressed,
+    this.progressButtonType = ProgressButtonType.Raised,
     this.color,
     this.width = double.infinity,
     this.height = 40.0,
@@ -69,48 +73,23 @@ class _ProgressButtonState extends State<ProgressButton>
     return PhysicalModel(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(_borderRadius),
-      child: Container(
+      child: SizedBox(
         key: _globalKey,
         height: _height,
         width: _width,
-        child: RaisedButton(
-          padding: EdgeInsets.all(0.0),
-          color: widget.color,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(_borderRadius)),
-          child: _buildChildren(context),
-          onPressed: widget.onPressed == null
-              ? null
-              : () async {
-                  if (_state != ProgressButtonState.Default) {
-                    return;
-                  }
-
-                  // The result of widget.onPressed() will be called as VoidCallback after button status is back to default.
-                  VoidCallback onDefault;
-                  if (widget.animate) {
-                    _toProcessing();
-                    _forward((status) {
-                      if (status == AnimationStatus.dismissed) {
-                        _toDefault();
-                        if (onDefault != null && onDefault is VoidCallback) {
-                          onDefault();
-                        }
-                      }
-                    });
-                    onDefault = await widget.onPressed();
-                    _reverse();
-                  } else {
-                    _toProcessing();
-                    onDefault = await widget.onPressed();
-                    _toDefault();
-                    if (onDefault != null && onDefault is VoidCallback) {
-                      onDefault();
-                    }
-                  }
-                },
-        ),
+        child: _buildChild(context),
       ),
+    );
+  }
+
+  Widget _buildChild(BuildContext context) {
+    return RaisedButton(
+      padding: EdgeInsets.all(0.0),
+      color: widget.color,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(_borderRadius)),
+      child: _buildChildren(context),
+      onPressed: _onButtonPressed(),
     );
   }
 
@@ -121,11 +100,43 @@ class _ProgressButtonState extends State<ProgressButton>
         ret = widget.defaultWidget;
         break;
       case ProgressButtonState.Processing:
-      default:
         ret = widget.progressWidget ?? widget.defaultWidget;
         break;
     }
     return ret;
+  }
+
+  VoidCallback _onButtonPressed() {
+    return widget.onPressed == null
+        ? null
+        : () async {
+            if (_state != ProgressButtonState.Default) {
+              return;
+            }
+
+            // The result of widget.onPressed() will be called as VoidCallback after button status is back to default.
+            VoidCallback onDefault;
+            if (widget.animate) {
+              _toProcessing();
+              _forward((status) {
+                if (status == AnimationStatus.dismissed) {
+                  _toDefault();
+                  if (onDefault != null && onDefault is VoidCallback) {
+                    onDefault();
+                  }
+                }
+              });
+              onDefault = await widget.onPressed();
+              _reverse();
+            } else {
+              _toProcessing();
+              onDefault = await widget.onPressed();
+              _toDefault();
+              if (onDefault != null && onDefault is VoidCallback) {
+                onDefault();
+              }
+            }
+          };
   }
 
   void _toProcessing() {

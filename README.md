@@ -8,8 +8,7 @@
 
 **flutter_progress_button** is a free and open source (MIT license) Material Flutter Button that supports variety of buttons style demands. It is designed to be easy to use and customizable.
 
-<img src="https://github.com/jiangyang5157/flutter_progress_button/blob/master/example/assets/example.gif" width="600">
-
+<img src="https://github.com/jiangyang5157/flutter_progress_button/blob/master/example/assets/example_20190616.gif" width="600">
 
 ## Get started
 

@@ -1,3 +1,6 @@
+## 1.0.0 - 20190616
+Support Flat and Outline type.
+
 ## 0.6.4 - 20190609
 README version update.
 

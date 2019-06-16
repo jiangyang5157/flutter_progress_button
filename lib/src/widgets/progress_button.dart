@@ -1,14 +1,21 @@
 part of flutter_progress_button;
 
-enum ProgressButtonType { Raised, Flat, Outline }
+enum ProgressButtonState {
+  Default,
+  Processing,
+}
 
-enum ProgressButtonState { Default, Processing }
+enum ProgressButtonType {
+  Raised,
+  Flat,
+  Outline,
+}
 
 class ProgressButton extends StatefulWidget {
   final Widget defaultWidget;
   final Widget progressWidget;
   final Function onPressed;
-  final ProgressButtonType progressButtonType;
+  final ProgressButtonType type;
   final Color color;
   final double width;
   final double height;
@@ -20,7 +27,7 @@ class ProgressButton extends StatefulWidget {
     this.defaultWidget,
     this.progressWidget,
     this.onPressed,
-    this.progressButtonType = ProgressButtonType.Raised,
+    this.type = ProgressButtonType.Raised,
     this.color,
     this.width = double.infinity,
     this.height = 40.0,
@@ -83,14 +90,37 @@ class _ProgressButtonState extends State<ProgressButton>
   }
 
   Widget _buildChild(BuildContext context) {
-    return RaisedButton(
-      padding: EdgeInsets.all(0.0),
-      color: widget.color,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(_borderRadius)),
-      child: _buildChildren(context),
-      onPressed: _onButtonPressed(),
-    );
+    var padding = const EdgeInsets.all(0.0);
+    var color = widget.color;
+    var shape = RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(_borderRadius));
+
+    switch (widget.type) {
+      case ProgressButtonType.Raised:
+        return RaisedButton(
+          padding: padding,
+          color: color,
+          shape: shape,
+          child: _buildChildren(context),
+          onPressed: _onButtonPressed(),
+        );
+      case ProgressButtonType.Flat:
+        return FlatButton(
+          padding: padding,
+          color: color,
+          shape: shape,
+          child: _buildChildren(context),
+          onPressed: _onButtonPressed(),
+        );
+      case ProgressButtonType.Outline:
+        return OutlineButton(
+          padding: padding,
+          color: color,
+          shape: shape,
+          child: _buildChildren(context),
+          onPressed: _onButtonPressed(),
+        );
+    }
   }
 
   Widget _buildChildren(BuildContext context) {

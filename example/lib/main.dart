@@ -29,34 +29,68 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('flutter_progress_button Example'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                defaultWidget: const Text('Like normal button'),
-                width: 196,
-                height: 40,
+      body: ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 0.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text('type=Raised',
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold)),
+                Text('type=Falt',
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold)),
+                Text('type=Outline',
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+            child: Text('List normal button:'),
+          ),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ProgressButton(
+                defaultWidget: const Text('btn 1'),
+                width: 114,
                 onPressed: () {},
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('Animate button with border adjustment:',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                defaultWidget: const Text('height=40'),
-                progressWidget: const CircularProgressIndicator(),
-                width: 196,
-                height: 40,
+              ProgressButton(
+                defaultWidget: const Text('btn 2'),
+                width: 114,
+                type: ProgressButtonType.Flat,
+                onPressed: () {},
+              ),
+              ProgressButton(
+                defaultWidget: const Text('btn 3'),
+                width: 114,
+                type: ProgressButtonType.Outline,
+                onPressed: () {},
+              ),
+            ],
+          ),
+          Text('animate=true (border adjustment):'),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 4', style: TextStyle(color: Colors.white)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+                color: Colors.blue,
+                width: 114,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 3000), () => 42);
+                      const Duration(milliseconds: 4000), () => 42);
                   // After [onPressed], it will trigger animation running backwards, from end to beginning
                   return () {
                     // Optional returns is returning a VoidCallback that will be called
@@ -67,104 +101,233 @@ class _HomePageState extends State<HomePage> {
                   };
                 },
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                defaultWidget: const Text('height=48',
-                    style: TextStyle(color: Colors.white)),
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 5', style: TextStyle(color: Colors.blue)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                width: 114,
+                type: ProgressButtonType.Flat,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 6', style: TextStyle(color: Colors.blue)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                width: 114,
+                type: ProgressButtonType.Outline,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+            ],
+          ),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 7', style: TextStyle(color: Colors.white)),
                 progressWidget: const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
-                color: Colors.blueAccent,
-                width: 196,
+                color: Colors.blue,
+                width: 114,
                 height: 48,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 3000), () => 42);
+                      const Duration(milliseconds: 4000), () => 42);
                 },
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('animate=false:',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                defaultWidget: const Text('Button_4',
-                    style: TextStyle(color: Colors.white)),
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 8', style: TextStyle(color: Colors.blue)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                width: 114,
+                height: 48,
+                type: ProgressButtonType.Flat,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 9', style: TextStyle(color: Colors.blue)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                width: 114,
+                height: 48,
+                type: ProgressButtonType.Outline,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+            ],
+          ),
+          Text('animate=false:'),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 10', style: TextStyle(color: Colors.white)),
                 progressWidget: const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
-                color: Colors.blueAccent,
-                width: 196,
+                color: Colors.blue,
+                width: 114,
                 height: 48,
                 animate: false,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 3000), () => 42);
+                      const Duration(milliseconds: 4000), () => 42);
                 },
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 0, top: 16, right: 0, bottom: 0.0),
-              child: Text('Customized:',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                defaultWidget: const Text('borderRadius=h/2',
-                    style: TextStyle(color: Colors.black)),
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 11', style: TextStyle(color: Colors.blue)),
                 progressWidget: const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black)),
-                color: Colors.lightGreen,
-                width: 196,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                width: 114,
                 height: 48,
-                borderRadius: 24,
+                animate: false,
+                type: ProgressButtonType.Flat,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 3000), () => 42);
+                      const Duration(milliseconds: 4000), () => 42);
                 },
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                defaultWidget: const Text('3 dots animation',
-                    style: TextStyle(color: Colors.white)),
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 12', style: TextStyle(color: Colors.blue)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                width: 114,
+                height: 48,
+                animate: false,
+                type: ProgressButtonType.Outline,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+            ],
+          ),
+          Text('animate=false, borderRadius=height/2:'),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 13', style: TextStyle(color: Colors.white)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+                color: Colors.blue,
+                width: 114,
+                height: 48,
+                borderRadius: 24,
+                animate: false,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 14', style: TextStyle(color: Colors.blue)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                width: 114,
+                height: 48,
+                borderRadius: 24,
+                animate: false,
+                type: ProgressButtonType.Flat,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+              ProgressButton(
+                defaultWidget:
+                    const Text('btn 15', style: TextStyle(color: Colors.blue)),
+                progressWidget: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                width: 114,
+                height: 48,
+                borderRadius: 24,
+                animate: false,
+                type: ProgressButtonType.Outline,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+            ],
+          ),
+          Text('Customization:'),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ProgressButton(
+                defaultWidget: const Icon(Icons.clear, color: Colors.red),
                 progressWidget: ThreeSizeDot(),
                 color: Colors.black54,
-                width: 196,
+                width: 114,
                 height: 48,
                 borderRadius: 24,
                 animate: false,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 3000), () => 42);
+                      const Duration(milliseconds: 4000), () => 42);
                 },
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: ProgressButton(
-                defaultWidget:
-                    const Icon(Icons.clear, color: Colors.lightGreen),
-                progressWidget: const CircularProgressIndicator(
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(Colors.lightGreen)),
-                color: Colors.black54,
-                width: 48,
+              ProgressButton(
+                defaultWidget: const Icon(Icons.clear, color: Colors.red),
+                progressWidget: ThreeSizeDot(
+                  color_1: Colors.black54,
+                  color_2: Colors.black54,
+                  color_3: Colors.black54,
+                ),
+                width: 114,
                 height: 48,
                 borderRadius: 24,
+                animate: false,
+                type: ProgressButtonType.Flat,
                 onPressed: () async {
                   int score = await Future.delayed(
-                      const Duration(milliseconds: 3000), () => 42);
+                      const Duration(milliseconds: 4000), () => 42);
                 },
               ),
-            ),
-          ],
-        ),
+              ProgressButton(
+                defaultWidget: const Icon(Icons.clear, color: Colors.red),
+                progressWidget: ThreeSizeDot(
+                  color_1: Colors.black54,
+                  color_2: Colors.black54,
+                  color_3: Colors.black54,
+                ),
+                width: 114,
+                height: 48,
+                borderRadius: 24,
+                animate: false,
+                type: ProgressButtonType.Outline,
+                onPressed: () async {
+                  int score = await Future.delayed(
+                      const Duration(milliseconds: 4000), () => 42);
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

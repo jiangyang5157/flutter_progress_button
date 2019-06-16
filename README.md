@@ -65,8 +65,33 @@ ProgressButton(
 ),
 ```
 
+More parameters:
+```dart
+ProgressButton({
+    Key key,
+    this.defaultWidget,
+    this.progressWidget,
+    this.onPressed,
+    this.type = ProgressButtonType.Raised,
+    this.color,
+    this.width = double.infinity,
+    this.height = 40.0,
+    this.borderRadius = 2.0,
+    this.animate = true,
+}) : super(key: key);
+```
+
+Three types supported:
+```dart
+enum ProgressButtonType {
+    Raised,
+    Flat,
+    Outline,
+}
+```
+
 ## Source
-Source code and examples of this library can be found in git:
+Source code and example of this library can be found in git:
 
 ```
 $ git clone https://github.com/jiangyang5157/flutter_progress_button.git

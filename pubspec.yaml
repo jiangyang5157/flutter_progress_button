@@ -2,7 +2,6 @@ name: flutter_progress_button
 description: flutter_progress_button is a free and open source (MIT license) Material Flutter Button that supports variety of buttons style demands. It is designed to be easy to use and customizable.
 version: 1.0.0
 homepage: https://github.com/jiangyang5157/flutter_progress_button
-author: Yang JIANG <jiangyang5157@gmail.com>
 
 environment:
   sdk: '>=2.2.2 <3.0.0'

@@ -1,3 +1,6 @@
+## 1.0.1 - 20200630
+Publish to private pub.
+
 ## 1.0.0 - 20190616
 Support Flat and Outline type.
 
